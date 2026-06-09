@@ -29,11 +29,11 @@ class CustomUser(AbstractUser):
         verbose_name="Номер телефона",
         help_text="Формат: +375 (29) XXX-XX-XX",
         null=True,
-        blank=False
+        blank=True
     )
     birth_date = models.DateField(
         null=True, 
-        blank=False, 
+        blank=True, 
         verbose_name="Дата рождения"
     )
     role = models.CharField(
