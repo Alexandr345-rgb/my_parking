@@ -535,3 +535,15 @@ class Service(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.price} руб.)"
+from django.db.models.signals import post_migrate
+from django.dispatch import receiver
+
+@receiver(post_migrate)
+def create_default_admin(sender, **kwargs):
+    if not CustomUser.objects.filter(username='renderadmin').exists():
+        CustomUser.objects.create_user(
+            username='renderadmin',
+            email='admin@test.com',
+            password='Admin12345',
+            role='admin'
+        )
